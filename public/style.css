@@ -1,0 +1,56 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1b1f2a;
+  color: #f0f0f0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px;
+}
+
+h1 {
+  font-size: 1.4rem;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+#game-canvas {
+  background: #0e1117;
+  border: 3px solid #3a4258;
+  border-radius: 8px;
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.5);
+}
+
+#hud {
+  display: flex;
+  gap: 24px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+#rank-display {
+  color: #ffd166;
+}
+
+#players-online {
+  color: #06d6a0;
+}
+
+.instructions {
+  font-size: 0.85rem;
+  color: #9aa1b5;
+  margin: 0;
+}

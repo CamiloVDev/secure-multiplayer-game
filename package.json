@@ -1,0 +1,25 @@
+{
+  "name": "secure-real-time-multiplayer-game",
+  "version": "1.0.0",
+  "description": "FreeCodeCamp - Secure Real Time Multiplayer Game",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "test": "mocha tests/*.js --ui tdd --reporter spec --timeout 10000 --exit"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "helmet": "^3.21.3",
+    "socket.io": "^4.7.2",
+    "nocache": "^2.1.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "chai-http": "^4.3.0",
+    "mocha": "^10.0.0"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Secure Real Time Multiplayer Game</title>
+  <link rel="stylesheet" href="/public/style.css" />
+</head>
+<body>
+  <div id="game-container">
+    <h1>Secure Real Time Multiplayer Game</h1>
+    <canvas id="game-canvas" width="640" height="480"></canvas>
+    <div id="hud">
+      <div id="rank-display">Rank: -/-</div>
+      <div id="players-online">Players online: 0</div>
+    </div>
+    <p class="instructions">Usa las flechas o WASD para mover tu avatar</p>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script type="module" src="/public/client.js"></script>
+</body>
+</html>
