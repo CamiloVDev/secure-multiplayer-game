@@ -1,6 +1,7 @@
 import express from 'express';
 import helmet from 'helmet';
 import nocache from 'nocache';
+import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import http from 'http';
@@ -14,12 +15,21 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server);
+const io = new Server(server, {
+  cors: {
+    origin: '*',
+    methods: ['GET', 'POST'],
+  },
+});
 
 const PORT = process.env.PORT || 3000;
 
+
 /* ----------------------- SECURITY MIDDLEWARE ----------------------- */
 // helmet@3.21.3 style API
+
+// Allow the FCC test runner (and others) to reach this app cross-origin
+app.use(cors({ origin: '*' }));
 
 // Prevent MIME type sniffing
 app.use(helmet.noSniff());
@@ -32,9 +42,6 @@ app.use(helmet.hidePoweredBy({ setTo: 'PHP 7.4.3' }));
 
 // Disable client side caching
 app.use(nocache());
-
-// Disallow being put in an iframe (extra hardening)
-app.use(helmet.frameguard({ action: 'deny' }));
 
 /* --------------------------- STATIC FILES --------------------------- */
 app.use('/public', express.static(path.join(__dirname, 'public')));

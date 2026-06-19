@@ -9,10 +9,11 @@
     "test": "mocha tests/*.js --ui tdd --reporter spec --timeout 10000 --exit"
   },
   "dependencies": {
+    "cors": "^2.8.6",
     "express": "^4.17.1",
     "helmet": "^3.21.3",
-    "socket.io": "^4.7.2",
-    "nocache": "^2.1.0"
+    "nocache": "^2.1.0",
+    "socket.io": "^4.7.2"
   },
   "devDependencies": {
     "chai": "^4.3.6",
