@@ -28,8 +28,22 @@ const PORT = process.env.PORT || 3000;
 /* ----------------------- SECURITY MIDDLEWARE ----------------------- */
 // helmet@3.21.3 style API
 
-// Allow the FCC test runner (and others) to reach this app cross-origin
-app.use(cors({ origin: '*' }));
+// Allow the FCC test runner (and others) to reach this app cross-origin,
+// and explicitly expose the security headers so client-side JS can read them
+app.use(
+  cors({
+    origin: '*',
+    exposedHeaders: [
+      'X-Powered-By',
+      'X-Content-Type-Options',
+      'X-XSS-Protection',
+      'Cache-Control',
+      'Pragma',
+      'Expires',
+      'Surrogate-Control',
+    ],
+  })
+);
 
 // Prevent MIME type sniffing
 app.use(helmet.noSniff());
