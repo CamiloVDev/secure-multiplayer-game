@@ -49,6 +49,51 @@ suite('Functional Tests - Security Headers', () => {
   });
 });
 
+suite('Functional Tests - FCC official checker (/_api/app-info)', () => {
+  // The real freeCodeCamp checker calls fetch(url + '/_api/app-info'),
+  // parses the JSON, and reads parsed.headers['x-...'] from the BODY,
+  // not from the raw HTTP response headers. This suite replicates that.
+  test('/_api/app-info reports x-content-type-options: nosniff', (done) => {
+    chai
+      .request(app)
+      .get('/_api/app-info')
+      .end((err, res) => {
+        assert.equal(res.body.headers['x-content-type-options'], 'nosniff');
+        done();
+      });
+  });
+
+  test('/_api/app-info reports x-xss-protection: 1; mode=block', (done) => {
+    chai
+      .request(app)
+      .get('/_api/app-info')
+      .end((err, res) => {
+        assert.equal(res.body.headers['x-xss-protection'], '1; mode=block');
+        done();
+      });
+  });
+
+  test('/_api/app-info reports cache-control with no-store', (done) => {
+    chai
+      .request(app)
+      .get('/_api/app-info')
+      .end((err, res) => {
+        assert.include(res.body.headers['cache-control'], 'no-store');
+        done();
+      });
+  });
+
+  test('/_api/app-info reports x-powered-by: PHP 7.4.3', (done) => {
+    chai
+      .request(app)
+      .get('/_api/app-info')
+      .end((err, res) => {
+        assert.equal(res.body.headers['x-powered-by'], 'PHP 7.4.3');
+        done();
+      });
+  });
+});
+
 suite('Unit Tests - Player class', () => {
   test('Player has id, score, x, y', () => {
     const p = new Player({ id: 'abc', x: 10, y: 20, score: 0 });

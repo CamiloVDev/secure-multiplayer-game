@@ -3,6 +3,7 @@ export default function (app) {
     res.json({
       project: 'secure-real-time-multiplayer-game',
       status: 'ok',
+      headers: res.getHeaders(),
     });
   });
 }
